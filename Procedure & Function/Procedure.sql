@@ -29,7 +29,7 @@ FROM customer
 
 
 -- #1 Searching a String
--- =========================
+-- ==========================================================
 /*Giving result to all string that includes a string like we input with wildcard*/
 GO
 CREATE OR ALTER PROCEDURE searchName
@@ -59,10 +59,10 @@ END
 GO
 --
 EXEC searchCustomer [Joceline Aoki]
---
+-- ==========================================================
 
 -- #2 DML with Procedure
--- =========================
+-- ==========================================================
 GO
 CREATE OR ALTER PROCEDURE inputCustomer
 (@customerId VARCHAR(MAX), @customerName VARCHAR(MAX), @customerPoint INT)
@@ -99,4 +99,4 @@ END
 EXEC updateCustomer [YC694], [YouVan]
 SELECT *
 FROM customer
---
+-- ==========================================================
