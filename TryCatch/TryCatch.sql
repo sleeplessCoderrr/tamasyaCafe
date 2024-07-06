@@ -34,18 +34,28 @@ END TRY
 BEGIN CATCH  
     EXECUTE usp_GetErrorInfo;  
 END CATCH;
+GO
 -- ==========================================================
 
--- TRY CATCH When Inserting
-BEGIN TRY 
-	INSERT INTO customer 
-	(CustomerId, CustomerName, CustomerPoint)
-	VALUES 
-		('ABCD7467', 'Unknown', 846)
-	PRINT [Successfully added]
-END TRY
-BEGIN CATCH 
-	PRINT 'Eror Occured'
-	SELECT ERROR_MESSAGE() AS ErrorMessage
-END CATCH
+-- TRY CATCH + PROCEDURE when inserting
+CREATE OR ALTER PROCEDURE insertWithCatch
+(@customerId CHAR(6), @customerName VARCHAR(MAX), @customerPoint VARCHAR(MAX))
+AS
+BEGIN
+	BEGIN TRY
+		BEGIN TRAN
+			INSERT INTO	customer (CustomerId, CustomerName, CustomerPoint)
+			VALUES (@customerId, @customerName, @customerPoint)
+		COMMIT TRAN
+	END TRY
+	BEGIN CATCH
+		PRINT ERROR_NUMBER()
+		PRINT ERROR_MESSAGE()
+		ROLLBACK TRAN
+	END CATCH
+END
+GO
+--
+EXEC insertWithCatch 'BC715', 'Abc Deline', 756;
+GO
 -- ==========================================================
