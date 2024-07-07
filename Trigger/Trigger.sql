@@ -7,6 +7,7 @@
    # Types of Triggers
    -------------------
    1. DML Triggers (Data Manipulation Language):
+      -) FOR Triggers : Execute when an INSERT, UPDATE, or DELETE operation on a table
       -) AFTER Triggers: Execute after an INSERT, UPDATE, or DELETE operation on a table.
       -) INSTEAD OF Triggers: Execute in place of an INSERT, UPDATE, or DELETE operation on a table or view.
 
